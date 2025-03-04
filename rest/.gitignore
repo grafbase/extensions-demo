@@ -1,0 +1,4 @@
+build
+target
+.build.lock
+/grafbase_extensions

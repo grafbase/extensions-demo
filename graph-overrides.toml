@@ -1,0 +1,3 @@
+[subgraphs.demo-rest]
+# url = "https://grafbase-federation-demo-product.fly.dev/graphql"
+schema_path = "rest.graphql"
