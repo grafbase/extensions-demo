@@ -1,9 +1,17 @@
-extend schema
+schema
     @link(url: "https://specs.apollo.dev/federation/v2.5")
-    @restEndpoint(name: "openlibrary", baseUrl: "https://openlibrary.org/api")
+    @link(
+        url: "https://extensions.grafbase.com/extensions/rest/0.2.1"
+        import: ["@rest", "@restEndpoint"]
+    )
+    @restEndpoint(name: "openlibrary", baseUrl: "https://openlibrary.org/api") {
+    query: Query
+}
 
-type Book {
-    isbn: ID!
+directive @restEndpoint
+directive @rest
+
+type BookDetails {
     bibKey: String
     infoUrl: String
     preview: PreviewType
@@ -12,12 +20,20 @@ type Book {
 }
 
 enum PreviewType {
-    NONE
-    PARTIAL
-    FULL
+    none
+    partial
+    full
 }
 
 type Query {
-    bookByISBN(isbn: ID!): Book
-        @rest(method: GET, path: "/books?bibkeys=ISBN:{{ args.isbn }}")
+    bookByISBN(isbn: ID!): BookDetails
+        @rest(
+            method: GET
+            path: "/books?bibkeys=ISBN:{{ args.isbn }}"
+            selection: ".[keys[0]]"
+        )
 }
+
+# type Subscription {
+#     bookAdded: ID
+# }
