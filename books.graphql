@@ -1,4 +1,4 @@
-schema
+extend schema
     @link(url: "https://specs.apollo.dev/federation/v2.5")
     @link(
         url: "https://extensions.grafbase.com/extensions/rest/0.3.1"
@@ -69,5 +69,5 @@ type BookSale {
 
 type Subscription {
     sales(subject: String!): BookSale
-        @natsSubscription(subject: "{{ args.subject }}", selection: "*")
+        @natsSubscription(subject: "{{ args.subject }}")
 }

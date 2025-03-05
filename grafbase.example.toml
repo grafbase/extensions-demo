@@ -6,6 +6,5 @@ networking = true
 version = "0.3"
 networking = true
 
-
 [[extensions.nats.config.endpoint]]
 servers = ["nats://localhost:4222"]
