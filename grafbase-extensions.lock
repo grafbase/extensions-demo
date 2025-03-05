@@ -1,9 +1,0 @@
-version = "1"
-
-[[extensions]]
-name = "nats"
-version = "0.3.2"
-
-[[extensions]]
-name = "rest"
-version = "0.3.2"
