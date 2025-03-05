@@ -1,3 +1,11 @@
-[extensions]
-rest = "0.2.1"
-nats = "0.2"
+[extensions.rest]
+version = "0.3.1"
+networking = true
+
+[extensions.nats]
+version = "0.3"
+networking = true
+
+
+[[extensions.nats.config.endpoint]]
+servers = ["nats://localhost:4222"]

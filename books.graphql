@@ -1,15 +1,19 @@
 schema
     @link(url: "https://specs.apollo.dev/federation/v2.5")
     @link(
-        url: "https://extensions.grafbase.com/extensions/rest/0.2.1"
+        url: "https://extensions.grafbase.com/extensions/rest/0.3.1"
         import: ["@rest", "@restEndpoint"]
     )
-    @restEndpoint(name: "openlibrary", baseUrl: "https://openlibrary.org/api") {
+    @link(
+        url: "https://extensions.grafbase.com/extensions/nats/0.3.0"
+        import: ["@natsPublish", "@natsSubscription"]
+    )
+    @restEndpoint(
+        name: "restCountries"
+        baseURL: "https://restcountries.com/v3.1"
+    ) {
     query: Query
 }
-
-directive @restEndpoint
-directive @rest
 
 type BookDetails {
     bibKey: String
@@ -25,15 +29,45 @@ enum PreviewType {
     full
 }
 
+type Country {
+    name: String!
+    region: String!
+    tlds: [String!]
+}
+
 type Query {
-    bookByISBN(isbn: ID!): BookDetails
+    listAllCountries: [Country!]!
         @rest(
             method: GET
-            path: "/books?bibkeys=ISBN:{{ args.isbn }}"
-            selection: ".[keys[0]]"
+            endpoint: "restCountries"
+            path: "/all"
+            selection: "[.[] | { name: .name.official, region: .region, tlds: .tld }]"
+        )
+    countryByName(name: String!): Country
+        @rest(
+            method: GET
+            endpoint: "restCountries"
+            path: "/name/{{ args.name }}"
+            selection: ".[0] | { name: .name.official, region: .region, tlds: .tld }"
         )
 }
 
-# type Subscription {
-#     bookAdded: ID
-# }
+input SellBookInput {
+    isbn: ID!
+    price: Int!
+}
+
+type Mutation {
+    sellBook(input: SellBookInput!): Boolean!
+        @natsPublish(subject: "bookSales", body: { selection: "*" })
+}
+
+type BookSale {
+    isbn: ID!
+    price: Int!
+}
+
+type Subscription {
+    sales(subject: String!): BookSale
+        @natsSubscription(subject: "{{ args.subject }}", selection: "*")
+}

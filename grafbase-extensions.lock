@@ -1,9 +1,9 @@
 version = "1"
 
 [[extensions]]
-name = "rest"
-version = "0.2.1"
+name = "nats"
+version = "0.3.0"
 
 [[extensions]]
-name = "nats"
-version = "0.2.3"
+name = "rest"
+version = "0.3.1"

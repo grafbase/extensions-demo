@@ -1,7 +1,7 @@
 extend schema
     @link(
-        url: "file:///home/tom/src/gh/grafbase/extensions-demo/rest/build"
-        # url: "https://extensions.grafbase.com/extensions/rest/0.2.1"
+        # url: "file:///home/tom/src/gh/grafbase/extensions-demo/rest/build"
+        url: "https://extensions.grafbase.com/extensions/rest/0.3.0"
         import: ["@restEndpoint", "@rest"]
     )
     @restEndpoint(
