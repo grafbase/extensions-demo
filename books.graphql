@@ -1,11 +1,11 @@
 extend schema
     @link(url: "https://specs.apollo.dev/federation/v2.5")
     @link(
-        url: "https://extensions.grafbase.com/extensions/rest/0.3.1"
+        url: "https://extensions.grafbase.com/extensions/rest/0.3.2"
         import: ["@rest", "@restEndpoint"]
     )
     @link(
-        url: "https://extensions.grafbase.com/extensions/nats/0.3.0"
+        url: "https://extensions.grafbase.com/extensions/nats/0.3.2"
         import: ["@natsPublish", "@natsSubscription"]
     )
     @restEndpoint(
@@ -13,6 +13,8 @@ extend schema
         baseURL: "https://restcountries.com/v3.1"
     ) {
     query: Query
+    mutation: Mutation
+    subscription: Subscription
 }
 
 type BookDetails {
@@ -69,5 +71,8 @@ type BookSale {
 
 type Subscription {
     sales(subject: String!): BookSale
-        @natsSubscription(subject: "{{ args.subject }}")
+        @natsSubscription(
+            subject: "{{ args.subject }}"
+            selection: "select(.price > 10)"
+        )
 }
