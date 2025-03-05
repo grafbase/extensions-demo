@@ -1,0 +1,23 @@
+extend schema
+    @link(url: "https://specs.apollo.dev/federation/v2.5")
+    @restEndpoint(name: "openlibrary", baseUrl: "https://openlibrary.org/api")
+
+type Book {
+    isbn: ID!
+    bibKey: String
+    infoUrl: String
+    preview: PreviewType
+    previewUrl: String
+    thumbnailUrl: String
+}
+
+enum PreviewType {
+    NONE
+    PARTIAL
+    FULL
+}
+
+type Query {
+    bookByISBN(isbn: ID!): Book
+        @rest(method: GET, path: "/books?bibkeys=ISBN:{{ args.isbn }}")
+}
