@@ -1,7 +1,0 @@
-{
-  "id": "5",
-  "type": "subscribe",
-  "payload": {
-    "query": "subscription { sales }"
-  }
-}
