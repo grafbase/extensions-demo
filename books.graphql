@@ -1,11 +1,11 @@
 extend schema
     @link(url: "https://specs.apollo.dev/federation/v2.5")
     @link(
-        url: "https://extensions.grafbase.com/extensions/rest/0.3.2"
+        url: "https://extensions.grafbase.com/extensions/rest/0.3.3"
         import: ["@rest", "@restEndpoint"]
     )
     @link(
-        url: "https://extensions.grafbase.com/extensions/nats/0.3.2"
+        url: "https://extensions.grafbase.com/extensions/nats/0.3.3"
         import: ["@natsPublish", "@natsSubscription"]
     )
     @restEndpoint(
