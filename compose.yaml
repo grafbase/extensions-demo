@@ -1,12 +1,10 @@
-version: '3'
-
 services:
   nats:
     image: nats:latest
     ports:
-      - "4222:4222"  # Client connections
-      - "8222:8222"  # HTTP monitoring
-      - "6222:6222"  # Clustering
+      - "4222:4222" # Client connections
+      - "8222:8222" # HTTP monitoring
+      - "6222:6222" # Clustering
     volumes:
       - nats_data:/data
     restart: unless-stopped

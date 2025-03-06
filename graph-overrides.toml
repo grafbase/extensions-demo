@@ -1,2 +1,2 @@
-[subgraphs.demo-rest]
+[subgraphs.books]
 schema_path = "books.graphql"
