@@ -1,2 +1,5 @@
+[subgraphs.countries]
+schema_path = "countries.graphql"
+
 [subgraphs.books]
 schema_path = "books.graphql"

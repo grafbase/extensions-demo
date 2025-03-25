@@ -1,0 +1,38 @@
+extend schema
+    @link(url: "https://specs.apollo.dev/federation/v2.5")
+    @link(
+        url: "https://extensions.grafbase.com/extensions/rest/0.3.3"
+        import: ["@rest", "@restEndpoint"]
+    )
+    @restEndpoint(name: "countries-api", baseURL: "http://localhost:3000") {
+    query: Query
+}
+
+type Country {
+    id: ID!
+    name: String!
+    capital: String
+    population: Int
+    continent: String
+    currency: String
+    language: [String!]!
+    fictional: Boolean
+}
+
+type Query {
+    listAllCountries: [Country!]!
+        @rest(
+            method: GET
+            endpoint: "countries-api"
+            path: "/api/countries"
+            selection: "."
+            # selection: "[.[] | { name: .name.official, region: .region, tlds: .tld }]"
+        )
+    searchCountries(name: String!): [Country!]!
+        @rest(
+            method: GET
+            endpoint: "countries-api"
+            path: "/api/countries/search?name={{ args.name }}"
+            selection: "."
+        )
+}

@@ -1,3 +1,4 @@
 /grafbase_extensions
 .aider*
 /.envrc
+node_modules
