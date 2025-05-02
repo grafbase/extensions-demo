@@ -1,8 +1,14 @@
+[subgraphs.countries]
+schema_path = "countries.graphql"
+
+# [subgraphs.books]
+# schema_path = "books.graphql"
+
 [extensions]
 rest = "0.3.3"
 
-[extensions.nats]
-version = "0.3.3"
+# [extensions.nats]
+# version = "0.3.3"
 
-[[extensions.nats.config.endpoint]]
-servers = ["nats://localhost:4222"]
+# [[extensions.nats.config.endpoint]]
+# servers = ["nats://localhost:4222"]
