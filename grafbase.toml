@@ -1,3 +1,9 @@
+[subgraphs.countries]
+schema_path = "countries.graphql"
+
+# [subgraphs.books]
+# schema_path = "books.graphql"
+
 [extensions]
 rest = "0.3.3"
 
