@@ -7,5 +7,5 @@ Demonstrates how to use Grafbase Extensions to extend the functionality of your 
 1. Run `docker-compose up` to start the NATS server
 2. Run `grafbase dev` to start the Grafbase dev server
 3. Start the countries server: `cd countries-server && bun countries-server.ts`
-3. Run `subscription.sh` to subscribe to GraphQL subscriptions after uncommenting the nats schema in grafbase.toml
-4. Open your browser and navigate to `http://localhost:5000` to view the Grafbase Explorer
+4. Run `subscription.sh` to subscribe to GraphQL subscriptions after uncommenting the nats schema in grafbase.toml
+5. Open your browser and navigate to `http://localhost:5000` to view the Grafbase Explorer
